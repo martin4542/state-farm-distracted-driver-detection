@@ -38,10 +38,6 @@ val_dataset = dset.ImageFolder(
     root='./val',
     transform=transform
 )
-test_dataset = dset.ImageFolder(
-    root = './test',
-    transform=transform
-)
 train_dataloader = DataLoader(
     train_dataset,
     batch_size = args.batch_size,
@@ -49,11 +45,6 @@ train_dataloader = DataLoader(
 )
 val_dataloader = DataLoader(
     val_dataset,
-    batch_size = args.batch_size,
-    shuffle=False
-)
-test_Dataloader = DataLoader(
-    test_dataset,
     batch_size = args.batch_size,
     shuffle=False
 )
@@ -117,3 +108,6 @@ for _ in range(args.epoch):
         torch.save(model.state_dict(), args.model + '_base')
 
     print(f'accuracy: {avg_acc}, loss: {avg_loss}, val_accuracy: {val_acc}, val_loss: {val_loss}')
+
+print("Training Finished")
+print(f"Best val acc: {best_acc}")
