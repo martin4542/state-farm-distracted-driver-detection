@@ -50,4 +50,3 @@ class get_model(nn.Module):
         flatten = self.flatten(feature)
         output = self.classifier(flatten)
         return output
-
