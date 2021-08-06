@@ -4,11 +4,11 @@ import torchvision.models as models
 
 # --------------------VGG 16 pretrained model--------------------
 class get_model(nn.Module):
-    def __init__(self, model, fix_param=False, pretrained=True):
+    def __init__(self, args):
         super(get_model, self).__init__()
-        self.model = model
-        self.fix_param = fix_param
-        self.pretrained = pretrained
+        self.model = args.model
+        self.fix_param = args.transfer
+        self.pretrained = args.pretrained
 
         # use vgg16 model as feature extractor
         if self.model == 'VGG16':
@@ -23,6 +23,9 @@ class get_model(nn.Module):
             feature_model = nn.Sequential(*list(base_model.children()))
             feature_model = feature_model[0:8]
             num_feat = 100352
+        
+        else:
+            return -1
 
         # define feature extractor
         self.feature_model = feature_model
@@ -41,7 +44,7 @@ class get_model(nn.Module):
         )
         
         # if you not want to trian feature extractor
-        if fix_param:
+        if self.fix_param:
             for param in self.feature_model.parameters():
                 param.requires_grad = False
 

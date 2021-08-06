@@ -54,7 +54,7 @@ val_dataloader = DataLoader(
 # --------------------data preprocessing--------------------
 # prepare training
 
-model = get_model(args.model, args.transfer, args.pretrained)
+model = get_model(args)
 loss_fn = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model.parameters(), lr=args.lr)
 model.cuda()
