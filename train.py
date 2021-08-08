@@ -14,9 +14,9 @@ parser = argparse.ArgumentParser(description='distracted driver detection')
 parser.add_argument('--model', default='VGG16', help='type of base model')
 parser.add_argument('--transfer', default=False, help='set true if you want to fix pretrained model parameter')
 parser.add_argument('--pretrained', default=True, help='set true if you want pretrained model')
-parser.add_argument('--lr', default=1e-3, help='learning rate')
-parser.add_argument('--epoch', default=30)
-parser.add_argument('--batch_size', default=12)
+parser.add_argument('--lr', default=1e-3, help='learning rate', type=float)
+parser.add_argument('--epoch', default=30, type=int)
+parser.add_argument('--batch_size', default=12, type=int)
 args = parser.parse_args()
             
 # --------------------data preprocessing--------------------
